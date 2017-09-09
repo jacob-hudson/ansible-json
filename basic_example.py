@@ -48,10 +48,10 @@ def main(params_list):
 
     if changed:
         with open(path, 'w') as f:
-            json.dump(obj, f, indent=2, separators=(',', ': '), sort_keys=True)
+            json.dump(obj, f)
 
     print(json.dumps({'changed': changed}))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
   main(sys.argv)
