@@ -2,12 +2,7 @@
 
 import json
 import sys
-
-try:
-    import commentjson
-    json_load = commentjson.load
-except ImportError:
-    json_load = json.load
+from ansible.module_utils.basic import *
 
 def main(params_list):
     params = dict(x.split("=", 2) for x in params_list)

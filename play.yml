@@ -1,7 +1,10 @@
 - hosts: localhost
   tasks:
    - name: Test that my module works
-     github_repo:
+     json:
+       filepath: example.json
+       jsonpath: "['sample']['someitem']"
+       value: "['neat']"
      register: result
 
    - debug: var=result
