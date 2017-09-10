@@ -3,8 +3,9 @@
    - name: Test that my module works
      json:
        filepath: example.json
-       jsonpath: "['sample']['someitem']"
-       value: "['neat']"
+       jsonpath: "Students"
+       search: "Chemistry"
+       value: "Name"
      register: result
 
    - debug: var=result
