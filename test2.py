@@ -9,20 +9,16 @@ with open("example2.json", "r") as json_file:
     search = "dt=1446940800,id=501"
     jsonpath = "list,weather,main"
 
-    json_path = search.split(",")
+    search_path  = search.split(",")
 
     key = []
     value = []
 
-    for i,jp in enumerate(json_path):
+    for i,jp in enumerate(search_path):
         k,v = jp.split("=")
         key.append(k)
         value.append(v)
 
-    # print value[0]
-    # if value[0].isdigit():
-    #     value[0] = int(value[0])
-    #     print value[0]
 
     for i,_ in enumerate(value):
         if value[i].isdigit():
