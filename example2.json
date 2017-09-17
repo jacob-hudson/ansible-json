@@ -1,20 +1,125 @@
 {
-  "firstName": "John",
-  "lastName" : "doe",
-  "age"      : 26,
-  "address"  : {
-    "streetAddress": "naist street",
-    "city"         : "Nara",
-    "postalCode"   : "630-0192"
+  "city": {
+    "id": 7530858,
+    "name": "Poznań",
+    "coord": {
+      "lon": 16.901541,
+      "lat": 52.400631
+    },
+    "country": "PL",
+    "population": 0,
+    "sys": {
+      "population": 0
+    }
   },
-  "phoneNumbers": [
+  "cod": "200",
+  "message": 0.0154,
+  "cnt": 3,
+  "list": [
     {
-      "type"  : "iPhone",
-      "number": "0123-4567-8888"
+      "dt": 1446919200,
+      "main": {
+        "temp": 285.84,
+        "temp_min": 285.84,
+        "temp_max": 285.84,
+        "pressure": 1027.1,
+        "sea_level": 1036.19,
+        "grnd_level": 1027.1,
+        "humidity": 95,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10n"
+        }
+      ],
+      "clouds": {
+        "all": 92
+      },
+      "wind": {
+        "speed": 2.86,
+        "deg": 262.503
+      },
+      "rain": {
+        "3h": 0.045
+      },
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2015-11-07 18:00:00"
     },
     {
-      "type"  : "home",
-      "number": "0123-4567-8910"
+      "dt": 1446930000,
+      "main": {
+        "temp": 285.59,
+        "temp_min": 285.588,
+        "temp_max": 285.59,
+        "pressure": 1026.19,
+        "sea_level": 1035.37,
+        "grnd_level": 1026.19,
+        "humidity": 95,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10n"
+        }
+      ],
+      "clouds": {
+        "all": 56
+      },
+      "wind": {
+        "speed": 3.87,
+        "deg": 225.5
+      },
+      "rain": {
+        "3h": 0.0225
+      },
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2015-11-07 21:00:00"
+    },
+    {
+      "dt": 1446940800,
+      "main": {
+        "temp": 286.55,
+        "temp_min": 286.549,
+        "temp_max": 286.55,
+        "pressure": 1024.19,
+        "sea_level": 1033.33,
+        "grnd_level": 1024.19,
+        "humidity": 95,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10n"
+        }
+      ],
+      "clouds": {
+        "all": 80
+      },
+      "wind": {
+        "speed": 5.6,
+        "deg": 223.502
+      },
+      "rain": {
+        "3h": 0.01
+      },
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2015-11-08 00:00:00"
     }
   ]
 }

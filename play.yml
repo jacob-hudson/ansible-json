@@ -13,8 +13,8 @@
   #  - name: Advanced example using example2
   #    json:
   #      filepath: example2.json
-  #      jsonpath: Students
-  #      search: Chemistry
+  #      jsonpath: "['_embedded']['episodes']['images']"
+  #      search: fsdkfdkl
   #      value: Name
   #    register: result2
    #
