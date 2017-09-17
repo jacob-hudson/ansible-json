@@ -12,14 +12,19 @@ def traverse_path(params, data):
 
     path = params['jsonpath']
 
+    key, value = params['search'].split("=")
+
     for c,i in enumerate(data[params['jsonpath']]):
-        if i["Major"] == params['search']:
+        if i[key] == value:
             return c
 
 def open_json(params):
 
     with open(params['filepath'], "r") as json_file:
         data = json.load(json_file)
+
+    key, value = params['search'].split("=")
+
 
     value = traverse_path(params, data)
     return False, False, data[params['jsonpath']][value][params['value']]

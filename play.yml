@@ -4,7 +4,7 @@
      json:
        filepath: example1.json
        jsonpath: Students
-       search: Chemistry
+       search: "Major=Chemistry"
        value: Name
      register: result1
 
