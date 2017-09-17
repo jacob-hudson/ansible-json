@@ -1,11 +1,21 @@
 - hosts: localhost
   tasks:
-   - name: Test that my module works
+   - name: Basic example using example1
      json:
-       filepath: example.json
-       jsonpath: "Students"
-       search: "Chemistry"
-       value: "Name"
-     register: result
+       filepath: example1.json
+       jsonpath: Students
+       search: Chemistry
+       value: Name
+     register: result1
 
-   - debug: var=result
+   - debug: var=result1
+
+  #  - name: Advanced example using example2
+  #    json:
+  #      filepath: example2.json
+  #      jsonpath: Students
+  #      search: Chemistry
+  #      value: Name
+  #    register: result2
+   #
+  #  - debug: var=result2
