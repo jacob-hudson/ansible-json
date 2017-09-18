@@ -20,6 +20,16 @@
 
    - debug: var=result1b
 
+   - name: Basic example using example1
+     json:
+       filepath: example1.json
+       jsonpath: Students
+       search: "Name=Rajeev Sen"
+       value: Major
+     register: result1c
+
+   - debug: var=result1c
+
   #  - name: Advanced example using example2
   #    json:
   #      filepath: example2.json
