@@ -3,11 +3,16 @@
 import json
 import os
 
-# def traverse(data,search,value):
+# jsonpath = []
+# search = []
+# value = ""
+# k = []
+# val = []
+# def traverse(data,jsonpath,k,val,value):
 #     for i,v in enumerate(data):
-#         if v == result:
-#             if value == r:
-#                 return value:
+#         # good for capturing the base json
+#         if v == jsonpath:
+#             data2 = data[v]
 #         elif type(data) is list:
 #
 #             data = data[u]
@@ -27,13 +32,11 @@ def main():
     for i,v in enumerate(data):
         if v == jsonpath:
             data2 = data[v]
-
-
-    if type(data2) is list:
-        for j,u in enumerate(data2):
-            if data2[j][k] == val:
-                data3 = data2[j]
-                print data3[value]
+            if type(data2) is list:
+                for j,u in enumerate(data2):
+                    if data2[j][k] == val:
+                        data3 = data2[j]
+                        print data3[value]
 
 
 if __name__ == "__main__":
