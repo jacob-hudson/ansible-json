@@ -18,6 +18,17 @@ import os
 #             data = data[u]
 #             return traverse(data)
 
+
+def non_recursive(data, jsonpath, k, val, value):
+        for i,v in enumerate(data):
+            if v == jsonpath:
+                data2 = data[v]
+                if type(data2) is list:
+                    for j,u in enumerate(data2):
+                        if data2[j][k] == val:
+                            data3 = data2[j]
+                            return data3[value]
+
 def main():
 
     with open("example1.json", "r") as json_file:
@@ -29,14 +40,7 @@ def main():
 
     k, val = search.split("=")
 
-    for i,v in enumerate(data):
-        if v == jsonpath:
-            data2 = data[v]
-            if type(data2) is list:
-                for j,u in enumerate(data2):
-                    if data2[j][k] == val:
-                        data3 = data2[j]
-                        print data3[value]
+    print non_recursive(data, jsonpath, k, val, value)
 
 
 if __name__ == "__main__":
