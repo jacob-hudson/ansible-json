@@ -22,12 +22,12 @@ import os
 def non_recursive(data, jsonpath, k, val, value):
         for i,v in enumerate(data):
             if v == jsonpath:
-                data2 = data[v]
-                if type(data2) is list:
-                    for j,u in enumerate(data2):
-                        if data2[j][k] == val:
-                            data3 = data2[j]
-                            return data3[value]
+                data = data[v]
+                if type(data) is list:
+                    for j,u in enumerate(data):
+                        if data[j][k] == val:
+                            data = data[j]
+                            return data[value]
 
 def main():
 
