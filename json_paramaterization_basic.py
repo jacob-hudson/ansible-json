@@ -30,7 +30,7 @@ def non_recursive(data, jsonpath, k, val, value):
                         if type(data3) is dict:
                             for t in data3.keys():
                                 if t == value:
-                                    print data3[t]
+                                    return data3[t]
 
 def main():
 
