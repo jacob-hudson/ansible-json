@@ -14,7 +14,7 @@ import os
 #             if v == jsonpath:
 #                 return recursive(data[v], jsonpath, k, val, value)
 #             # returning what the user wants - if it is a uniquey key
-#             elif len(data) == 1:
+#             elif len(data) == 1 and t == value:
 #                 return data[v]
 #             # non-unique keys
 #             else:
