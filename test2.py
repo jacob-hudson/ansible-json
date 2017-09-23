@@ -27,18 +27,19 @@ import os
 #                 if data[h][k] == val:
 #                     return recursive(data[h], jsonpath, k, val, value)
 
-# def non_recursive(data, jsonpath, k, val, value):
-#     for i,v in enumerate(data):
-#         if v == jsonpath:
-#             data2 = data[v]
-#             if type(data2) is list:
-#                 for h,u in enumerate(data2):
-#                     if data2[h][k] == val:
-#                         data3 = data2[h]
-#                         if type(data3) is dict:
-#                             for t in data3.keys():
-#                                 if t == value:
-#                                     return data3[t]
+def non_recursive(data, json_path, key, value, params_value):
+    for i,v in enumerate(data):
+        if v == json_path[0]:
+            data2 = data[v]
+            for h,u in enumerate(data2):
+                if data2[h][key[0]] == value[0]:
+                    data3 = data2[h]
+                    for g,t in enumerate(data3):
+                        if t == json_path[1]:
+                            data4 = data3[t]
+                            for f,s in enumerate(data4):
+                                if data4[f][key[1]] == value[1]:
+                                    return data4[f][params_value]
 
 def main():
 
@@ -64,18 +65,8 @@ def main():
         if value[i].isdigit():
             value[i] = int(value[i])
 
-    for i,v in enumerate(data):
-        if v == json_path[0]:
-            data2 = data[v]
-            for h,u in enumerate(data2):
-                if data2[h][key[0]] == value[0]:
-                    data3 = data2[h]
-                    for g,t in enumerate(data3):
-                        if t == json_path[1]:
-                            data4 = data3[t]
-                            for f,s in enumerate(data4):
-                                if data4[f][key[1]] == value[1]:
-                                    print data4[f][params_value]
+    print non_recursive(data, json_path, key, value, params_value)
+
 
 if __name__ == "__main__":
     main()
