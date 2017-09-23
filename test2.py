@@ -6,26 +6,26 @@ import os
 #  print data['list'][2]['weather'][1]['main']
 
 
-# def recursive(data, jsonpath, k, val, value):
-#     for i,v in enumerate(data):
-#         # dict - {} (not indexed)
-#         if type(data) is dict:
-#             # looking for a specific element supplied by the user
-#             if v == jsonpath:
-#                 return recursive(data[v], jsonpath, k, val, value)
-#             # returning what the user wants - if it is a uniquey key
-#             elif len(data) == 1 and t == value:
-#                 return data[v]
-#             # non-unique keys
-#             else:
-#                 for t in data.keys():
-#                     if t == value:
-#                         return data[t]
-#         else: # assuming it is a list - [] (need an index)
-#             for h,u in enumerate(data):
-#                 # matching a specified key-value pair
-#                 if data[h][k] == val:
-#                     return recursive(data[h], jsonpath, k, val, value)
+def recursive(data, json_path, key, value, params_value):
+    for i,v in enumerate(data):
+        # dict - {} (not indexed)
+        if type(data) is dict:
+            # looking for a specific element supplied by the user
+            if v == json_path:
+                return recursive(data, json_path[v], key, value, params_value)
+            # returning what the user wants - if it is a uniquey key
+        elif len(data) == 1 and t == params_value:
+                return data[v]
+            # non-unique keys
+            else:
+                for t in data.keys():
+                    if t == params_value:
+                        return data[t]
+        else: # assuming it is a list - [] (need an index)
+            for h,u in enumerate(data):
+                # matching a specified key-value pair
+                if data[h][key] == value:
+                    return recursive(data, json_path[v], key, value, params_value)
 
 def non_recursive(data, json_path, key, value, params_value):
     for i,v in enumerate(data):
