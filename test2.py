@@ -46,8 +46,8 @@ def main():
         data = json.load(json_file)
 
     search = "dt=1446940800,id=501"
-    jsonpath = "list,weather,main"
-    params_value = "Rain"
+    jsonpath = "list,weather"
+    params_value = "main"
 
     json_path = jsonpath.split(",")
     search_path  = search.split(",")
@@ -65,17 +65,17 @@ def main():
             value[i] = int(value[i])
 
     for i,v in enumerate(data):
-        if v == "list":
+        if v == json_path[0]:
             data2 = data[v]
             for h,u in enumerate(data2):
-                if data2[h]['dt'] == 1446940800:
+                if data2[h][key[0]] == value[0]:
                     data3 = data2[h]
                     for g,t in enumerate(data3):
-                        if t == "weather":
+                        if t == json_path[1]:
                             data4 = data3[t]
                             for f,s in enumerate(data4):
-                                if data4[f]['id'] == 501:
-                                    print data4[f]['main']
+                                if data4[f][key[1]] == value[1]:
+                                    print data4[f][params_value]
 
 if __name__ == "__main__":
     main()
