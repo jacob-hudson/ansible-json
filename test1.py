@@ -11,7 +11,7 @@ def recursive(data, jsonpath, k, val, value):
             if v == jsonpath:
                 return recursive(data[v], jsonpath, k, val, value)
             # returning what the user wants - if it is a uniquey key
-            elif len(data) == 1:
+            elif len(data) == 1 and v == value:
                 return data[v]
             # non-unique keys
             else:
