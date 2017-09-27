@@ -17,13 +17,10 @@ def recursive(data, json_path, key, value, params_value):
         # dict - {} (not indexed)
         if type(data) is dict:
             # looking for a specific element supplied by the user
-            print jnum
-            if v == json_path[jnum]:
-                if jnum < len(json_path):
+            if jnum < len(json_path):
+                if v == json_path[jnum]:
                     jnum = jnum + 1
                     return recursive(data[v], json_path, key, value, params_value)
-                else:
-                    print "not ok"
             # returning what the user wants - if it is a uniquey key
             elif len(data) == 1 and v == params_value:
                 return data[v]
@@ -43,8 +40,6 @@ def recursive(data, json_path, key, value, params_value):
                         knum += 1
                         vnum += 1
                         return recursive(data[h], json_path, key, value, params_value)
-                    else:
-                        print "not ok"
 
 
 # def non_recursive(data, json_path, key, value, params_value):
