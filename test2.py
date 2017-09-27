@@ -25,16 +25,17 @@ def recursive(data, json_path, key, value, params_value):
                 return data[v]
             # non-unique keys
             elif len(data) > 1 and data.has_key(params_value):
-                print data
                 for t in data.keys():
                     if t == params_value:
-                        return data[t]
+                        if not isinstance(data[t], dict):
+                            return data[t]
             else:
                 pass
         else: # assuming it is a list - [] (need an index)
             for h,u in enumerate(data):
                 # matching a specified key-value pair
                 if data[h][key[knum]] == value[vnum]:
+                    print data[h].keys()
                     knum += 1
                     vnum += 1
                     return recursive(data[h], json_path, key, value, params_value)
