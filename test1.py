@@ -3,13 +3,24 @@
 import json
 import os
 
+# global variables
+jnum = 0
+knum = 0
+vnum = 0
+
 def recursive(data, json_path, key, value, params_value):
+    # uses variables from the global namespace
+    global jnum
+    global knum
+    global vnum
     for i,v in enumerate(data):
         # dict - {} (not indexed)
         if type(data) is dict:
             # looking for a specific element supplied by the user
-            if v == json_path:
-                return recursive(data[v], json_path, key, value, params_value)
+            if jnum < len(json_path):
+                if v == json_path[jnum]:
+                    jnum = jnum + 1
+                    return recursive(data[v], json_path, key, value, params_value)
             # returning what the user wants - if it is a uniquey key
             elif len(data) == 1 and v == params_value:
                 return data[v]
@@ -17,14 +28,20 @@ def recursive(data, json_path, key, value, params_value):
             elif len(data) > 1 and data.has_key(params_value):
                 for t in data.keys():
                     if t == params_value:
-                        return data[t]
+                        if not isinstance(data[t], dict):
+                            return data[t]
             else:
                 pass
         else: # assuming it is a list - [] (need an index)
             for h,u in enumerate(data):
                 # matching a specified key-value pair
-                if data[h][key] == value:
-                    return recursive(data[h], json_path, key, value, params_value)
+                if data[h][key[knum]] == value[vnum]:
+                    if knum < len(key):
+                        knum += 1
+                        vnum += 1
+                        return recursive(data[h], json_path, key, value, params_value)
+                    else:
+                        return data[h][params_value]
 
 # def non_recursive(data, jsonpath, k, val, value):
 #     for i,v in enumerate(data):
@@ -44,11 +61,24 @@ def main():
     with open("example1.json", "r") as json_file:
         data = json.load(json_file)
 
-    json_path = "Students"
-    search_path = "Major=Chemistry"
+    jsonpath = "Students"
+    search = "Major=Chemistry"
     params_value = "Name"
 
-    key, value = search_path.split("=")
+    json_path = jsonpath.split(",")
+    search_path  = search.split(",")
+
+    key = []
+    value = []
+
+    for i,sp in enumerate(search_path):
+        k,v = sp.split("=")
+        key.append(k)
+        value.append(v)
+
+    for i,_ in enumerate(value):
+        if value[i].isdigit():
+            value[i] = int(value[i])
 
     print recursive(data, json_path, key, value, params_value)
 
