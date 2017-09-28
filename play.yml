@@ -4,7 +4,7 @@
      json_file:
        filepath: example1.json
        jsonpath: Students
-       search: "Major=Chemistry"
+       search: Major=Chemistry
        value: Name
      register: result1a
 
@@ -14,7 +14,7 @@
      json_file:
        filepath: example1.json
        jsonpath: Students
-       search: "Major=Physics"
+       search: Major=Physics
        value: Name
      register: result1b
 
@@ -24,7 +24,7 @@
      json_file:
        filepath: example1.json
        jsonpath: Students
-       search: "Name=Rajeev Sen"
+       search: Name=Rajeev Sen
        value: Major
      register: result1c
 
@@ -33,8 +33,8 @@
    - name: Intermediate example using example2
      json_file:
        filepath: example2.json
-       jsonpath: "list,weather"
-       search: "dt=1446940800,id=501"
+       jsonpath: list,weather
+       search: dt=1446940800,id=501
        value: main
      register: result2a
 
@@ -43,8 +43,8 @@
    - name: Intermediate example using example2
      json_file:
        filepath: example2.json
-       jsonpath: "list,weather"
-       search: "dt=1446940800,id=501"
+       jsonpath: list,weather
+       search: dt=1446940800,id=501
        value: description
      register: result2b
 
