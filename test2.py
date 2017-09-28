@@ -5,14 +5,12 @@ import os
 
 # global variables
 jnum = 0
-knum = 0
-vnum = 0
+kvnum = 0
 
 def recursive(data, json_path, key, value, params_value):
     # uses variables from the global namespace
     global jnum
-    global knum
-    global vnum
+    global kvnum
     for i,v in enumerate(data):
         # dict - {} (not indexed)
         if type(data) is dict:
@@ -35,10 +33,9 @@ def recursive(data, json_path, key, value, params_value):
         else: # assuming it is a list - [] (need an index)
             for h,u in enumerate(data):
                 # matching a specified key-value pair
-                if data[h][key[knum]] == value[vnum]:
-                    if knum < len(key):
-                        knum += 1
-                        vnum += 1
+                if data[h][key[kvnum]] == value[kvnum]:
+                    if kvnum < len(key):
+                        kvnum += 1
                         return recursive(data[h], json_path, key, value, params_value)
                     else:
                         return data[h][params_value]
@@ -65,7 +62,7 @@ def main():
 
     search = "dt=1446940800,id=501"
     jsonpath = "list,weather"
-    params_value = "main"
+    params_value = "description"
 
     json_path = jsonpath.split(",")
     search_path  = search.split(",")

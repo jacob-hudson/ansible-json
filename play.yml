@@ -30,12 +30,22 @@
 
    - debug: var=result1c
 
-  #  - name: Advanced example using example2
-  #    json_file:
-  #      filepath: example2.json
-  #      jsonpath: "['_embedded']['episodes']['images']"
-  #      search: fsdkfdkl
-  #      value: Name
-  #    register: result2
-   #
-  #  - debug: var=result2
+   - name: Intermediate example using example2
+     json_file:
+       filepath: example2.json
+       jsonpath: "list,weather"
+       search: "dt=1446940800,id=501"
+       value: main
+     register: result2a
+
+   - debug: var=result2a
+
+   - name: Intermediate example using example2
+     json_file:
+       filepath: example2.json
+       jsonpath: "list,weather"
+       search: "dt=1446940800,id=501"
+       value: description
+     register: result2b
+
+   - debug: var=result2b
