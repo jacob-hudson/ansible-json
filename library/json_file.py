@@ -25,12 +25,12 @@ def traverse_path(data, json_path, key, value, params_value):
                     jnum = jnum + 1
                     return traverse_path(data[v], json_path, key, value, params_value)
             # returning what the user wants - if it is a uniquey key
-            elif len(data) == 1 and v == params_value:
+            elif len(data) == 1 and v == params_value[0]:
                 return data[v]
             # non-unique keys
-            elif len(data) > 1 and data.has_key(params_value):
+            elif len(data) > 1 and data.has_key(params_value[0]):
                 for t in data.keys():
-                    if t == params_value:
+                    if t == params_value[0]:
                         if not isinstance(data[t], dict):
                             return data[t]
             else:
@@ -43,7 +43,7 @@ def traverse_path(data, json_path, key, value, params_value):
                         kvnum += 1
                         return traverse_path(data[h], json_path, key, value, params_value)
                     else:
-                        return data[h][params_value]
+                        return data[h][params_value[0]]
 
 def open_json(params):
 
@@ -52,7 +52,8 @@ def open_json(params):
 
     json_path = params['jsonpath'].split(",")
     search_path  = params['search'].split(",")
-    params_value = params['value']
+    params_value = []
+    params_value = params['value'].split('=')
 
     key = []
     value = []
