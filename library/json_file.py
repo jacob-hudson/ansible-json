@@ -22,7 +22,7 @@ def traverse_path(data, json_path, key, value, params_value):
             # looking for a specific element supplied by the user
             if jnum < len(json_path):
                 if v == json_path[jnum]:
-                    jnum = jnum + 1
+                    jnum += 1
                     return traverse_path(data[v], json_path, key, value, params_value)
             # returning what the user wants - if it is a uniquey key
             elif len(data) == 1 and v == params_value[0]:
