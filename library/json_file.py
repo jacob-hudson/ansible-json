@@ -25,13 +25,13 @@ def traverse_path(data, json_path, key, value, params_value):
                     return traverse_path(data[v], json_path, key, value, params_value)
             # returning what the user wants - if it is a uniquey key
             elif len(data) == 1 and v == params_value[0]:
-                return False, data[v]
+                return False, False, data[v]
             # non-unique keys
             elif len(data) > 1 and data.has_key(params_value[0]):
                 for t in data.keys():
                     if t == params_value[0]:
                         if not isinstance(data[t], dict):
-                            return False, data[t]
+                            return False, False, data[t]
             else:
                 pass # do nothing
         else: # assuming it is a list - [] (need an index)
@@ -42,7 +42,7 @@ def traverse_path(data, json_path, key, value, params_value):
                         kvnum += 1
                         return traverse_path(data[h], json_path, key, value, params_value)
                     else:
-                        return False, data[h][params_value[0]]
+                        return False, False, data[h][params_value[0]]
 
 def open_json(params):
 
@@ -66,8 +66,8 @@ def open_json(params):
         if value[i].isdigit():
             value[i] = int(value[i])
 
-    has_changed, value = traverse_path(data, json_path, key, value, params_value)
-    return False, has_changed, value
+    is_error, has_changed, value = traverse_path(data, json_path, key, value, params_value)
+    return is_error, has_changed, value
 
 def main():
 
