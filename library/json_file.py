@@ -5,7 +5,6 @@ import json
 import os
 
 DOCUMENTATION = ''' docs '''
-
 EXAMPLES = ''' examples '''
 
 # global variables
@@ -26,15 +25,15 @@ def traverse_path(data, json_path, key, value, params_value):
                     return traverse_path(data[v], json_path, key, value, params_value)
             # returning what the user wants - if it is a uniquey key
             elif len(data) == 1 and v == params_value[0]:
-                return data[v]
+                return False, data[v]
             # non-unique keys
             elif len(data) > 1 and data.has_key(params_value[0]):
                 for t in data.keys():
                     if t == params_value[0]:
                         if not isinstance(data[t], dict):
-                            return data[t]
+                            return False, data[t]
             else:
-                pass
+                pass # do nothing
         else: # assuming it is a list - [] (need an index)
             for h,u in enumerate(data):
                 # matching a specified key-value pair
@@ -43,7 +42,7 @@ def traverse_path(data, json_path, key, value, params_value):
                         kvnum += 1
                         return traverse_path(data[h], json_path, key, value, params_value)
                     else:
-                        return data[h][params_value[0]]
+                        return False, data[h][params_value[0]]
 
 def open_json(params):
 
@@ -67,8 +66,8 @@ def open_json(params):
         if value[i].isdigit():
             value[i] = int(value[i])
 
-    value = traverse_path(data, json_path, key, value, params_value)
-    return False, False, value
+    has_changed, value = traverse_path(data, json_path, key, value, params_value)
+    return False, has_changed, value
 
 def main():
 
