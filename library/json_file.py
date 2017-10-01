@@ -51,7 +51,6 @@ def open_json(params):
 
     json_path = params['jsonpath'].split(",")
     search_path  = params['search'].split(",")
-    params_value = []
     params_value = params['value'].split('=')
 
     key = []
