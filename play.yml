@@ -49,3 +49,12 @@
      register: result2b
 
    - debug: var=result2b
+
+  #  - name: Downloading a JSON file
+  #    uri:
+  #      url: http://mysafeinfo.com/api/data?list=englishmonarchs&format=json
+  #      method: GET
+  #      body_format: json
+  #    register: result_download
+   #
+  #  - debug: var=result_download
