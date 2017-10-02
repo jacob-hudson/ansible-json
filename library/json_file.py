@@ -45,9 +45,11 @@ def traverse_path(data, json_path, key, value, params_value):
                         return False, False, data[h][params_value[0]]
 
 def open_json(params):
-
-    with open(params['filepath'], "r") as json_file:
-        data = json.load(json_file)
+    try:
+        with open(params['filepath'], "r") as json_file:
+            data = json.load(json_file)
+    except IOError:
+        return True, False, "File %s could not be opened" % params['filepath']
 
     json_path = params['jsonpath'].split(",")
     search_path  = params['search'].split(",")
@@ -82,9 +84,9 @@ def main():
     is_error, has_changed, result = open_json(module.params)
 
     if not is_error:
-        module.exit_json(changed=has_changed, meta=result)
+        module.exit_json(changed=has_changed, msg=result)
     else:
-        module.fail_json(msg="Something bad happened", meta=result)
+        module.fail_json(msg=result)
 
 if __name__ == "__main__":
     main()
