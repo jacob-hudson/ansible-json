@@ -31,7 +31,11 @@ def traverse_path(data, json_path, key, value, params_value):
                 for t in data.keys():
                     if t == params_value[0]:
                         if not isinstance(data[t], dict):
-                            return False, False, data[t]
+                            if len(params_value) > 1:
+                                data[t] = params_value[1]
+                                return False, True, data[t]
+                            else:
+                                return False, False, data[t]
             else:
                 pass # do nothing
         else: # assuming it is a list - [] (need an index)
@@ -42,7 +46,11 @@ def traverse_path(data, json_path, key, value, params_value):
                         kvnum += 1
                         return traverse_path(data[h], json_path, key, value, params_value)
                     else:
-                        return False, False, data[h][params_value[0]]
+                        if len(params_value) > 1:
+                            data[h][params_value[0]] = params_value[1]
+                            return False, True, data[h][params_value[0]]
+                        else:
+                            return False, False, data[h][params_value[0]]
 
 def open_json(params):
     try:

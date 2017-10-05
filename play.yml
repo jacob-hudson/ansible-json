@@ -30,6 +30,26 @@
 
    - debug: var=result1c
 
+   - name: Basic example using example1
+     json_file:
+       filepath: example1.json
+       jsonpath: Students
+       search: Name=Rajeev Sen
+       value: Major=Computer Science
+     register: result1d
+
+   - debug: var=result1d
+
+   - name: Resetting example1d
+     json_file:
+       filepath: example1.json
+       jsonpath: Students
+       search: Name=Rajeev Sen
+       value: Major=Mathematics
+     register: result1e
+
+   - debug: var=result1e
+
    - name: Intermediate example using example2
      json_file:
        filepath: example2.json
@@ -49,6 +69,26 @@
      register: result2b
 
    - debug: var=result2b
+
+   - name: Intermediate example using example2
+     json_file:
+       filepath: example2.json
+       jsonpath: list,weather
+       search: dt=1446940800,id=501
+       value: description=light hail
+     register: result2c
+
+   - debug: var=result2c
+
+   - name: Resetting example 2c
+     json_file:
+       filepath: example2.json
+       jsonpath: list,weather
+       search: dt=1446940800,id=501
+       value: description=light rain
+     register: result2d
+
+   - debug: var=result2d
 
   #  - name: Downloading a JSON file
   #    uri:
