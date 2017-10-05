@@ -25,4 +25,4 @@ script:
   # Correctly cloning role
   - git clone https://github.com/jacob-hudson/ansible-json
   # Basic role syntax check
-  - ansible-playbook play.yml
+  - ansible-playbook play.yml -v
