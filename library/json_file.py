@@ -74,15 +74,14 @@ def open_json(params):
         if value[i].isdigit():
             value[i] = int(value[i])
 
-    is_error, has_changed, value = traverse_path(data, json_path, key, value, params_value)
-    return is_error, has_changed, value
+    return traverse_path(data, json_path, key, value, params_value)
 
 def main():
 
     fields = {
         "filepath": {"required": True, "type": "str"},
         "jsonpath": {"required": True, "type": "str"},
-        "search": {"required": False, "type": "str"},
+        "search": {"required": True, "type": "str"},
         "value": {"required": True, "type": "str"},
     }
 
