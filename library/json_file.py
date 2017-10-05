@@ -32,7 +32,7 @@ def traverse_path(data, json_path, key, value, params_value):
                 return traverse_path(data[v], json_path, key, value, params_value)
             # returning what the user wants - if it is a uniquey key
             elif len(data) == 1 and v == params_value[0]:
-                return capture_update(data[t], params_value)
+                return capture_update(data[v], params_value)
             # non-unique keys
             elif len(data) > 1 and data.has_key(params_value[0]):
                 for t in data.keys():
