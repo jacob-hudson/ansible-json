@@ -23,7 +23,7 @@ def traverse_path(data, json_path, key, value, params_value):
     # uses variables from the global namespace
     global jnum
     global kvnum
-    for i,v in enumerate(data):
+    for v in data:
         # dict - {} (not indexed)
         if type(data) is dict:
             # looking for a specific element supplied by the user
@@ -42,7 +42,7 @@ def traverse_path(data, json_path, key, value, params_value):
             else:
                 pass # do nothing
         else: # assuming it is a list - [] (need an index)
-            for h,u in enumerate(data):
+            for h,_ in enumerate(data):
                 # matching a specified key-value pair
                 if data[h][key[kvnum]] == value[kvnum]:
                     if kvnum < len(key):
@@ -60,12 +60,12 @@ def open_json(params):
 
     json_path = params['jsonpath'].split(",")
     search_path  = params['search'].split(",")
-    params_value = params['value'].split('=')
+    params_value = params['value'].split("=")
 
     key = []
     value = []
 
-    for i,sp in enumerate(search_path):
+    for sp in search_path:
         k,v = sp.split("=")
         key.append(k)
         value.append(v)
