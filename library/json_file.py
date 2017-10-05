@@ -11,6 +11,14 @@ EXAMPLES = ''' examples '''
 jnum = 0
 kvnum = 0
 
+def capture_update(data, params_value):
+    if len(params_value) > 1:
+        data = params_value[1]
+        return False, True, data
+    else:
+        return False, False, data
+
+
 def traverse_path(data, json_path, key, value, params_value):
     # uses variables from the global namespace
     global jnum
@@ -19,23 +27,18 @@ def traverse_path(data, json_path, key, value, params_value):
         # dict - {} (not indexed)
         if type(data) is dict:
             # looking for a specific element supplied by the user
-            if jnum < len(json_path):
-                if v == json_path[jnum]:
-                    jnum += 1
-                    return traverse_path(data[v], json_path, key, value, params_value)
+            if jnum < len(json_path) and v == json_path[jnum]:
+                jnum += 1
+                return traverse_path(data[v], json_path, key, value, params_value)
             # returning what the user wants - if it is a uniquey key
             elif len(data) == 1 and v == params_value[0]:
-                return False, False, data[v]
+                return capture_update(data[t], params_value)
             # non-unique keys
             elif len(data) > 1 and data.has_key(params_value[0]):
                 for t in data.keys():
                     if t == params_value[0]:
                         if not isinstance(data[t], dict):
-                            if len(params_value) > 1:
-                                data[t] = params_value[1]
-                                return False, True, data[t]
-                            else:
-                                return False, False, data[t]
+                            return capture_update(data[t], params_value)
             else:
                 pass # do nothing
         else: # assuming it is a list - [] (need an index)
@@ -46,11 +49,7 @@ def traverse_path(data, json_path, key, value, params_value):
                         kvnum += 1
                         return traverse_path(data[h], json_path, key, value, params_value)
                     else:
-                        if len(params_value) > 1:
-                            data[h][params_value[0]] = params_value[1]
-                            return False, True, data[h][params_value[0]]
-                        else:
-                            return False, False, data[h][params_value[0]]
+                        return capture_update(data[h][params_value[0]], params_value)
 
 def open_json(params):
     try:
