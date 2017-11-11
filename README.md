@@ -5,4 +5,4 @@
 Ansible module for tweaking settings in JSON files
 
 # Install
-Drop `jaon_file.py` into `./library` in any Ansible playbook, then invoke it like any standard module
+Drop `json_file.py` into `./library` in any Ansible playbook, then invoke it like any standard module
